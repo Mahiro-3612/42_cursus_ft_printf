@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:53:45 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/12 13:47:03 by codespace        ###   ########.fr       */
+/*   Updated: 2025/08/12 15:32:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,28 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+int	put_uintptr(uintptr_t uintptr)
+{
+	long	div;
+	char	c;
+	int		written;
+	char	*hex_digits;
+
+	hex_digits = "0123456789abcdef";
+	written = 0;
+	div = 1;
+	while (uintptr / div >= 16)
+		div *= 16;
+	while (div > 0)
+	{
+		c = hex_digits[uintptr / div];
+		if (put_c(c) == -1)
+			return (-1);
+		uintptr %= div;
+		div /= 16;
+		written++;
+	}
+	return (written);
 }

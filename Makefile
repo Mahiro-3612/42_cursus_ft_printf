@@ -6,7 +6,7 @@
 #    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/26 12:07:29 by msakurai          #+#    #+#              #
-#    Updated: 2025/08/12 13:33:32 by codespace        ###   ########.fr        #
+#    Updated: 2025/08/12 15:33:28 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,10 @@ CFLAGS		:= -Wall -Wextra -Werror
 INCDIR= -I./
 
 SRCS		:= ft_printf.c \
-check_conversion.c \
-put_conversion.c \
+check_conversion_a.c \
+check_conversion_b.c \
+put_conversion_a.c \
+put_conversion_b.c \
 utils.c
 
 

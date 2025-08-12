@@ -6,15 +6,15 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 13:16:23 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/12 14:55:53 by codespace        ###   ########.fr       */
+/*   Updated: 2025/08/12 15:23:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int count_format(const char *format)
+static int	count_format(const char *format)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (*format)
@@ -23,19 +23,19 @@ static int count_format(const char *format)
 		{
 			count += 1;
 			format += 2;
-			continue;
+			continue ;
 		}
 		format++;
 	}
 	return (count);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list ap;
-	int count;
-	int written;
-	int put;
+	va_list	ap;
+	int		count;
+	int		written;
+	int		put;
 
 	if (format == NULL)
 		return (-1);
@@ -47,7 +47,7 @@ int ft_printf(const char *format, ...)
 		if (!is_conversion(format))
 		{
 			if (write(1, format, 1) == -1)
-				return(-1);
+				return (-1);
 			written++;
 			format++;
 		}
@@ -67,8 +67,8 @@ int ft_printf(const char *format, ...)
 				put = put_u(va_arg(ap, unsigned int));
 			else if (is_conversion_x(format))
 				put = put_x(va_arg(ap, unsigned int));
-			else if (is_conversion_X(format))
-				put = put_X(va_arg(ap, unsigned int));
+			else if (is_conversion_upper_x(format))
+				put = put_upper_x(va_arg(ap, unsigned int));
 			else if (is_conversion_percent(format))
 				put = put_percent();
 			if (put < 0)
@@ -95,6 +95,7 @@ int ft_printf(const char *format, ...)
 // 	ft_printf(" %p %p \n", c, d);
 // 	printf("%p\n", a);
 // 	ft_printf("%p\n", a);
-// 	assert(printf("dfsds%ckdfk%c\n", '1', '2') == ft_printf("dfsds%ckdfk%c\n", '1', '2'));
+// 	assert(printf("dfsds%ckdfk%c\n", '1', '2')
+// 		== ft_printf("dfsds%ckdfk%c\n", '1', '2'));
 // 	return (0);
 // }
