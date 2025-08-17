@@ -6,7 +6,7 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 13:16:23 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 15:05:48 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:39:33 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (written);
 }
-
-// int main(void)
-// {
-// 	char *a = "hi";
-// 	char *b = NULL;
-// 	int  *c = 0;
-// 	int  *d = 0;
-
-// 	printf(" NULL %s NULL \n", b);
-// 	ft_printf(" NULL %s NULL \n", b);
-// 	printf(" %p %p \n", c, d);
-// 	ft_printf(" %p %p \n", c, d);
-// 	printf("%p\n", a);
-// 	ft_printf("%p\n", a);
-// 	assert(printf("dfsds%ckdfk%c\n", '1', '2')
-// 		== ft_printf("dfsds%ckdfk%c\n", '1', '2'));
-// 	return (0);
-// }

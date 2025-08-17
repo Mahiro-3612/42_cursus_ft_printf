@@ -6,7 +6,7 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:27:05 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 14:21:03 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:34:54 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_conversion_i(const char *str)
 
 int	is_conversion_d(const char *str)
 {
-	if (*str == '%' && (*(str + 1) == 'd' || *(str + 1) == 'i'))
+	if (*str == '%' && *(str + 1) == 'd')
 		return (1);
 	return (0);
 }
