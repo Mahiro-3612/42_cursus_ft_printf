@@ -6,7 +6,7 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:48:15 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 14:23:18 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:02:20 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ int	put_i(int i)
 		num *= -1;
 		written++;
 	}
-	div = 1;
-	while (num / div >= 10)
-		div *= 10;
+	div = get_digits(num);
 	while (div > 0)
 	{
 		c = '0' + (num / div);
@@ -92,9 +90,7 @@ int	put_d(int d)
 		num *= -1;
 		written++;
 	}
-	div = 1;
-	while (num / div >= 10)
-		div *= 10;
+	div = get_digits(num);
 	while (div > 0)
 	{
 		c = '0' + (num / div);

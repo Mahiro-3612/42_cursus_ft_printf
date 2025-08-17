@@ -6,7 +6,7 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:53:45 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 14:23:32 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:01:13 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ int	put_uintptr(uintptr_t uintptr)
 		written++;
 	}
 	return (written);
+}
+
+long	get_digits(long num)
+{
+	long	div;
+
+	div = 1;
+	while (num / div >= 10)
+		div *= 10;
+	return (div);
 }

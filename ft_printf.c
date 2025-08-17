@@ -6,77 +6,60 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 13:16:23 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 14:22:45 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:05:48 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_format(const char *format)
+static int	put_by_conversion(const char *format, va_list ap)
 {
-	int	count;
+	int	put;
 
-	count = 0;
-	while (*format)
-	{
-		if (is_conversion(format))
-		{
-			count += 1;
-			format += 2;
-			continue ;
-		}
-		format++;
-	}
-	return (count);
+	if (is_conversion_c(format))
+		put = put_c(va_arg(ap, int));
+	else if (is_conversion_s(format))
+		put = put_s(va_arg(ap, char *));
+	else if (is_conversion_p(format))
+		put = put_p(va_arg(ap, void *));
+	else if (is_conversion_d(format))
+		put = put_d(va_arg(ap, int));
+	else if (is_conversion_i(format))
+		put = put_i(va_arg(ap, int));
+	else if (is_conversion_u(format))
+		put = put_u(va_arg(ap, unsigned int));
+	else if (is_conversion_x(format))
+		put = put_x(va_arg(ap, unsigned int));
+	else if (is_conversion_upper_x(format))
+		put = put_upper_x(va_arg(ap, unsigned int));
+	else
+		put = put_percent();
+	return (put);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		count;
 	int		written;
 	int		put;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
-	count = count_format(format);
 	written = 0;
 	va_start(ap, format);
 	while (*format)
 	{
 		if (!is_conversion(format))
+			put = write(1, format, 1);
+		else
 		{
-			if (write(1, format, 1) == -1)
-				return (-1);
-			written++;
+			put = put_by_conversion(format, ap);
 			format++;
 		}
-		else if (count > 0)
-		{
-			if (is_conversion_c(format))
-				put = put_c(va_arg(ap, int));
-			else if (is_conversion_s(format))
-				put = put_s(va_arg(ap, char *));
-			else if (is_conversion_p(format))
-				put = put_p(va_arg(ap, void *));
-			else if (is_conversion_d(format))
-				put = put_d(va_arg(ap, int));
-			else if (is_conversion_i(format))
-				put = put_i(va_arg(ap, int));
-			else if (is_conversion_u(format))
-				put = put_u(va_arg(ap, unsigned int));
-			else if (is_conversion_x(format))
-				put = put_x(va_arg(ap, unsigned int));
-			else if (is_conversion_upper_x(format))
-				put = put_upper_x(va_arg(ap, unsigned int));
-			else if (is_conversion_percent(format))
-				put = put_percent();
-			if (put < 0)
-				return (-1);
-			written += put;
-			count--;
-			format += 2;
-		}
+		format++;
+		if (put < 0)
+			return (-1);
+		written += put;
 	}
 	va_end(ap);
 	return (written);

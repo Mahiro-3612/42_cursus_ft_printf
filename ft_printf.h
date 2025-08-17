@@ -6,7 +6,7 @@
 /*   By: msakurai <msakurai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 13:30:15 by codespace         #+#    #+#             */
-/*   Updated: 2025/08/17 14:22:57 by msakurai         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:02:01 by msakurai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ int		put_upper_x(unsigned int n);
 int		put_percent(void);
 size_t	ft_strlen(const char *s);
 int		put_uintptr(uintptr_t uintptr);
+long	get_digits(long num);
 int		ft_printf(const char *format, ...);
